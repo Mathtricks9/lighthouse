@@ -20,7 +20,7 @@ const path = require('path');
 // @ts-expect-error - We don't really need types for this
 const colors = require('colors');
 const LegacyJavascript = require('../../audits/byte-efficiency/legacy-javascript.js');
-const i18n = require('../../lib/i18n/i18n.js');
+const format = require('../../../shared/localization/format.js');
 const {LH_ROOT} = require('../../../root.js');
 
 const LATEST_RUN_DIR = path.join(LH_ROOT, 'latest-run');
@@ -84,7 +84,7 @@ async function main() {
     for (let i = 0; i < signals.length; i++) {
       const signal = signals[i];
       const location = locations[i];
-      if (typeof location !== 'object' || i18n.isIcuMessage(location) ||
+      if (typeof location !== 'object' || format.isIcuMessage(location) ||
           location.type !== 'source-location') {
         continue;
       }
